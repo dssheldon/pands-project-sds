@@ -43,3 +43,25 @@ for petalandsepal in l_petalandsepals:
         #plt.savefig(specie+petalandsepal)
         plt.show() #used temporarily and will be replace by savefig above.
         plt.cla()
+
+import itertools as it # researched itertools as a way to generate comboinations for two sets of variables to use them in a loop in order to automate generating the scatter diagrams
+
+#temp = list(it.combinations(l_petalandsepals,2)) # This was the proof of concept to see whether it worked
+#print(temp)
+#for x in temp:
+#    plt.scatter(iris_data[x[0]],iris_data[x[1]])
+#    plt.show()
+#    #print(x[0],x[1])
+
+iris_data_combos = list(it.combinations(l_petalandsepals,2)) # used itertools to generate combinations of variables as a list with embeded tuples
+#print(temp) - check to be removed
+# used a for loop to go through each item of the list representing a unique combination (non repeated) of variables to use in the scatter plot
+for x in iris_data_combos:
+    # used the loc method again to extract data relating to each specie of iris flower seperately, giving it a seperate colour
+    # plotted scatter plots for each class/specie assigning a different colour to each specie
+    plt.scatter((iris_data.loc[iris_data[i_sp] == i_vir,x[0]]), (iris_data.loc[iris_data[i_sp] == i_vir, x[1]]),color='red')
+    plt.scatter((iris_data.loc[iris_data[i_sp] == i_vc,x[0]]), (iris_data.loc[iris_data[i_sp] == i_vc, x[1]]),color='blue')
+    plt.scatter((iris_data.loc[iris_data[i_sp] == i_seto,x[0]]), (iris_data.loc[iris_data[i_sp] == i_seto, x[1]]),color='green')
+# need to add titles etc.
+    plt.show()
+
