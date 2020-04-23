@@ -30,21 +30,25 @@ l_species = [i_vir, i_vc, i_seto] # generated a list of classes
 #======================================================================================================================
 
 import itertools as it # researched itertools as a way to generate comboinations for two sets of variables to use them in a loop in order to automate generating the scatter diagrams
-import matplotlib.colors as mcolors
-import random
+import matplotlib.colors as mcolors # imported to generate colours for plots
+import random # imported to randomise the colours for plots
 
-plot_colors = list(mcolors.TABLEAU_COLORS) 
+plot_colors = list(mcolors.TABLEAU_COLORS) # generated a list of colours from which random colours will be selected for plots
 
-
+#MOVE THIS SECTION TO README###################################333333333
 # Researched  https://realpython.com/python-matplotlib-guide/
 # Used https://matplotlib.org/3.1.1/gallery/statistics/hist.html as well
+# Idea of technique of plotting by species from https://www.datacamp.com/community/tutorials/histograms-matplotlib but generated own code
+# Idea of box plot from https://medium.com/@harimittapalli/exploratory-data-analysis-iris-dataset-9920ea439a3e but code is my own
+###############################################################
 
-# Will try to use the statless rather than stateful interface
+# Qs. 3.2 - Saving a histogram of the variables
 
-# Idea of technique of plotting by species from https://www.datacamp.com/community/tutorials/histograms-matplotlib but generated own code 
-
-
-for petalandsepal in l_petalandsepals:
+# Used the for loop as above (for the text file) to generate the data for the histograms
+# Plotted the histograms for each variable by Species type
+# Generated a random colour within the matplotlib.colors TABLEAU colour list
+# Set the title, labels and set the gridlines for the plot
+for petalandsepal in l_petalandsepals: 
     for specie in l_species:
         plt.hist((iris_data.loc[iris_data[i_sp] == specie,petalandsepal]), bins='auto', rwidth=0.95, color=random.choice(plot_colors))
         plt.title(specie.upper()+" "+ petalandsepal.upper())
@@ -53,18 +57,11 @@ for petalandsepal in l_petalandsepals:
         plt.grid(axis='y', alpha=0.25)
         plt.tight_layout()
         #plt.savefig(specie.title()+" "+petalandsepal.title()+ "- Histogram")
-        #plt.show() #used temporarily and will be replace by savefig above.
-        #plt.cla()
+        plt.show() #used temporarily and will be replace by savefig above.
 
-
-#temp = list(it.combinations(l_petalandsepals,2)) # This was the proof of concept to see whether it worked
-#print(temp)
-#for x in temp:
-#    plt.scatter(iris_data[x[0]],iris_data[x[1]])
-#    plt.show()
-#    #print(x[0],x[1])
-#print(temp) - check to be removed
-
+# Q3.3 - Saves a scatter plot of pairs of variables
+# Created a list of combinations of each pair of variables using itertools and used a for loop and loc method to generate the required data
+# Added labels to each plot
 
 iris_data_combos = list(it.combinations(l_petalandsepals,2)) # used itertools to generate combinations of variables as a list with embeded tuples
 # used a for loop to go through each item of the list representing a unique combination (non repeated) of variables to use in the scatter plot
@@ -78,45 +75,48 @@ for x in iris_data_combos:
     plt.xlabel(x[0].title())
     plt.ylabel(x[1].title())
     plt.title("SCATTER PLOT OF THE PAIRS OF IRIS VARIBLES")
-    plt.legend(l_species, loc='upper left', prop={'size': 9})
+    plt.legend(l_species, loc='upper left', prop={'size': 10})
     plt.tight_layout()
-    #plt.show()
+    #plt.savefig(specie.title()+" "+x[0].title()+"/"+x[1].title()+ "- Scatter Plot")
+    plt.show()
 
-# need to add titles etc.
+# PLOT OTHER INTERESTING ANALYSIS (Includes heatmap showing correlations, pariplots, box plots and violin plots)    
 
-# PLOT OTHER INTERESTING ANALYSIS (Includes heatmap showing correlations, pariplots, box plots and violon plots)    
-
-# Correlation plot done by various
+# Heatmap using SNS
 plt.figure(figsize=(8,8))
-sns.heatmap(iris_data.corr(),annot=True)
+sns.heatmap(iris_data.corr(),annot=True, cmap="PiYG")
 plt.title("CORRELATION BETWEEN IRIS VARIABLES - HEATMAP")
 plt.ylim(4.0, 0)
 plt.tight_layout()
-#plt.show()
+#plt.savefig("CORRELATION BETWEEN IRIS VARIABLES (HEATMAP) -  SEABORN (Optional Plot)")
+plt.show()
 
+# Pairplot using SNS
 sns.pairplot(iris_data, hue=i_sp)
 plt.suptitle("PAIRPLOTS OF ALL PAIRS OF VARIABLES USING SEABORN")
 plt.subplots_adjust(top=0.95)
-#plt.tight_layout()
-#plt.show()
-
-# Box plots and violin plots anlysis of data done by various 
-#   Idea from https://medium.com/@harimittapalli/exploratory-data-analysis-iris-dataset-9920ea439a3e but code is my own
-
-plt.figure(figsize=(10,8))
-for i,n in zip(list(range(1,5)),l_petalandsepals):
-    plt.subplot(2,2,i)
-    sns.boxplot(x=i_sp,y=n,data=iris_data)
-    plt.suptitle("BOX PLOT OF VARIABLES")
-    plt.subplots_adjust(top=0.95,wspace=0.4)
-    #plt.tight_layout()
+#plt.savefig("PAIRPLOTS OF ALL PAIRS OF VARIABLES - SEABORN (Optional Plot)")
 plt.show()
 
+
+# Box plots using SNS
+# Used a for loop to create subplots and then added boxplots for Each variable by Species.
+plt.figure(figsize=(10,8))
+for i,n in zip(list(range(1,5)),l_petalandsepals): #used "zip" and range to iterate through two variables simultaneously
+    plt.subplot(2,2,i) # used 'i' to choose a subplot
+    sns.boxplot(x=i_sp,y=n,data=iris_data) # used 'n' to iterate through the list of variables
+    plt.suptitle("BOX PLOT OF VARIABLES")
+    plt.subplots_adjust(top=0.95,wspace=0.4) # made adjustments so that the title would fit on the top of the page
+#plt.savefig("BOX PLOT OF VARIABLES USING SEABORN (Optional Plot)")
+plt.show()
+
+# Violin Plots using SNS
+# Used same code as Box plots above
 plt.figure(figsize=(10,8))
 for i,n in zip(list(range(1,5)),l_petalandsepals):
     plt.subplot(2,2,i)
     sns.violinplot(x=i_sp,y=n,data=iris_data)
     plt.suptitle("VIOLIN PLOT OF VARIABLES")
     plt.subplots_adjust(top=0.90,wspace=0.5)
-    #plt.tight_layout()
+#plt.savefig("VIOLIN PLOT OF VARIABLES USING SEABORN (Optional Plot)")
 plt.show()
