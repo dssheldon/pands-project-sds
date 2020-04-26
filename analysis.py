@@ -33,65 +33,75 @@ l_species = [i_vir, i_vc, i_seto] # generated a list of classes
 
 # Create a text file by using the open function with a+ attribute
 
-# with open("VariableOutput.txt","a") as txt_file:
+with open("VariableOutput.txt","w") as txt_file:
 
-# print summary of each variable to a single text file - initally printing to screen
-# use myfile.write("appended text") to replace the print function
-# used the pandas tutorial on Real Python for some of the code used below to summarise attributes of the variables
+    # print summary of each variable to a single text file - initally printing to screen
+    # use myfile.write("appended text") to replace the print function
+    # used the pandas tutorial on Real Python for some of the code used below to summarise attributes of the variables
 
-# APPEND A SUMMARY OF VARIABLES TO THE FILE
-print("SUMMARY OF VARIABLES") # File heading
-print('\n')
+    # APPEND A SUMMARY OF VARIABLES TO THE FILE
+    txt_file.write("\n =======================")
+    txt_file.write("\n | SUMMARY OF VARIABLES |") # File heading
+    txt_file.write("\n =======================")
+    txt_file.write('\n\n\n')
 
-# Extract and append a the names of all variables used in the dataset
-# Appended the headers for each of the columns and the species names, by iterating over the two lists created at the start of the program
-print("The variables within the dataset are as follows:")
-[print(x) for x in iris_data.columns.values] # iterated over the of column values using list comprehension
-[print (' ','-',y) for y in l_species]
-print('\n')
+    # Extract and append a the names of all variables used in the dataset
+    # Appended the headers for each of the columns and the species names, by iterating over the two lists created at the start of the program
+    txt_file.write("\nThe variables within the dataset are as follows:")
+    txt_file.write("\n------------------------------------------------")
+    [txt_file.write(f"\n{x}") for x in iris_data.columns.values] # iterated over the of column values using list comprehension
+    [txt_file.write(f"\n - {y}") for y in l_species]
+    txt_file.write('\n\n')
 
 
-# Generated and appended to the file, the number of records by each specie
-# Obtained the "number of records" by using the .loc method from the pandas library (Reference: Real Python - Pandas Tutorial )
+    # Generated and appended to the file, the number of records by each specie
+    # Obtained the "number of records" by using the .loc method from the pandas library (Reference: Real Python - Pandas Tutorial )
 
-print("The number of records for each class of the Iris flowers is as follows:")
+    txt_file.write("\nThe number of records for each class of the Iris flowers is as follows:")
+    txt_file.write("\n-----------------------------------------------------------------------")
 
-f_count_virg = iris_data.loc[iris_data[i_sp] == i_vir,i_sp].value_counts() # used value_counts() method to generate the "number of records" for the specified data subset
-print(f_count_virg.to_string()) # used this to remove the printing of "Name and dtype" at the end of the value_counts() function (https://www.geeksforgeeks.org/python-pandas-dataframe-to_string/)
+    f_count_virg = iris_data.loc[iris_data[i_sp] == i_vir,i_sp].value_counts() # used value_counts() method to generate the "number of records" for the specified data subset
+    txt_file.write(f"\n\t {f_count_virg.to_string()}") # used this to remove the printing of "Name and dtype" at the end of the value_counts() function (https://www.geeksforgeeks.org/python-pandas-dataframe-to_string/)
 
-f_count_seto = iris_data.loc[iris_data[i_sp] == i_seto,i_sp].value_counts()
-print(f_count_seto.to_string())
+    f_count_seto = iris_data.loc[iris_data[i_sp] == i_seto,i_sp].value_counts()
+    txt_file.write(f"\n\t {f_count_seto.to_string()}")
 
-f_count_versi = iris_data.loc[iris_data[i_sp] == i_vc,i_sp].value_counts()
-print(f_count_versi.to_string())
-print('\n')
+    f_count_versi = iris_data.loc[iris_data[i_sp] == i_vc,i_sp].value_counts()
+    txt_file.write(f"\n\t {f_count_versi.to_string()}")
+    txt_file.write('\n\n')
 
-# Generated Other Useful information about the data
+    # Generated Other Useful information about the data
 
-print("Useful information about the data is as follow:")
-print()
+    txt_file.write("\nUseful information about the data is as follow:")
+    txt_file.write("\n-----------------------------------------------\n")
+    
+    # Used for loops to iterate  through the lists of variables of "petals and sepals" measurements and "Species" 
+    #    Used the .loc method in Pandas to obtain the specifc data for each class
+    #       The end result is to generate the mean, median and std for each variable broken down by class of iris flower
+    #           using the  mean/median/std methods
+    for petalandsepal in l_petalandsepals:
+        for specie in l_species:
+            txt_file.write(f"\nThe mean of the {petalandsepal} for the {specie} is: ----> {round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].mean(),2)}")
+            txt_file.write(f"\nThe median of the {petalandsepal} for the {specie} is: ----> {round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].median(),2)}")
+            txt_file.write(f"\nThe standard deviation of the {petalandsepal} for the {specie} is: ---> {round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].std(),2)}")
+            txt_file.write("\n")
 
-# Used for loops to iterate  through the lists of variables of "petals and sepals" measurements and "Species" 
-#    Used the .loc method in Pandas to obtain the specifc data for each class
-#       The end result is to generate the mean, median and std for each variable broken down by class of iris flower
-#           using the  mean/median/std methods
-for petalandsepal in l_petalandsepals:
-    for specie in l_species:
-        print("The mean of the",petalandsepal, "for the", specie, "is:", round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].mean(),2))
-        print("The median of the",petalandsepal, "for the", specie, "is:", round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].median(),2))
-        print("The standard deviation of the",petalandsepal, "for the", specie, "is:", round(iris_data.loc[iris_data[i_sp] == specie,petalandsepal].std(),2))
-        print()
+    # Generated the shape of the dataset using the shape method within pandas
 
-# Generated the shape of the dataset using the shape method within pandas
+    txt_file.write("\n\nShape of the Dataset")
+    txt_file.write("\n--------------------")
 
-print("The shape of the iris.csv file is ",iris_data.shape)
-print('\n')
+    txt_file.write(f"\nThe shape (r,c - number of rows and columns) of the iris.csv file is {iris_data.shape}")
+    txt_file.write('\n\n')
 
-# Generated a summary of the data using the describe() method within pandas
+    # Generated a summary of the data using the describe() method within pandas
 
-print("The following summary is generated using the describe function of pandas:")
-print()
-print(iris_data.describe()) # using pandas to output a summary of the data
+    txt_file.write("\nSummary of Data - Pandas Describe function")
+    txt_file.write("\n------------------------------------------\n")
+
+    txt_file.write("\nThe following summary is generated using the describe function of pandas:")
+    txt_file.write("\n")
+    txt_file.write(f"\n{round(iris_data.describe(),2)}") # using pandas to output a summary of the data
 
 #========================================================================================================================================
 

@@ -50,8 +50,9 @@ for petalandsepal in l_petalandsepals:
         plt.ylabel(petalandsepal.title() + " Count")
         plt.grid(axis='y', alpha=0.25)
         plt.tight_layout()
-        #plt.savefig(specie.title()+" "+petalandsepal.title()+ "- Histogram")
-        plt.show() #used temporarily and will be replace by savefig above.
+        plt.savefig(specie.title()+" "+petalandsepal.title()+ "- Histogram")
+        plt.cla()
+        #plt.show() #used temporarily and will be replace by savefig above.
 
 # Qs. 3.3 - Saving SCATTER PLOTS of pairs of variables
 
@@ -70,10 +71,10 @@ for x in iris_data_combos:
     plt.xlabel(x[0].title())
     plt.ylabel(x[1].title())
     plt.title("SCATTER PLOT OF THE PAIRS OF IRIS VARIBLES")
-    plt.legend(l_species, loc='upper left', prop={'size': 11})
+    plt.legend(l_species, loc='upper left', prop={'size': 12})
     plt.tight_layout()
-    #plt.savefig(specie.title()+" "+x[0].title()+"/"+x[1].title()+ "- Scatter Plot")
-    plt.show()
+    plt.savefig(specie.title()+" "+x[0].title()+" vs "+x[1].title()+ "- Scatter Plot")
+    #plt.show()
 
 # PLOT OTHER INTERESTING ANALYSIS (Includes heatmap showing correlations, pariplots, box plots and violin plots)    
 
@@ -81,17 +82,17 @@ for x in iris_data_combos:
 plt.figure(figsize=(8,8))
 sns.heatmap(iris_data.corr(),annot=True, cmap="coolwarm")
 plt.title("CORRELATION BETWEEN IRIS VARIABLES - HEATMAP")
-plt.ylim(4.0, 0)
+plt.ylim(4.0, 0) # used to correct the top of the heatmap boxes being cut-off
 plt.tight_layout()
-#plt.savefig("CORRELATION BETWEEN IRIS VARIABLES (HEATMAP) -  SEABORN (Optional Plot)")
-plt.show()
+plt.savefig("CORRELATION BETWEEN IRIS VARIABLES (HEATMAP) -  SEABORN (Optional Plot)")
+#plt.show()
 
 # Pairplot using SNS
 sns.pairplot(iris_data, hue=i_sp)
 plt.suptitle("PAIRPLOTS OF ALL PAIRS OF VARIABLES USING SEABORN")
 plt.subplots_adjust(top=0.95)
-#plt.savefig("PAIRPLOTS OF ALL PAIRS OF VARIABLES - SEABORN (Optional Plot)")
-plt.show()
+plt.savefig("PAIRPLOTS OF ALL PAIRS OF VARIABLES - SEABORN (Optional Plot)")
+#plt.show()
 
 
 # Box plots using SNS
@@ -101,9 +102,9 @@ for i,n in zip(list(range(1,5)),l_petalandsepals): #used "zip" and range to iter
     plt.subplot(2,2,i) # used 'i' to choose a subplot
     sns.boxplot(x=i_sp,y=n,data=iris_data) # used 'n' to iterate through the list of variables
     plt.suptitle("BOX PLOT OF VARIABLES")
-    plt.subplots_adjust(top=0.95,wspace=0.4) # made adjustments so that the title would fit on the top of the page
-#plt.savefig("BOX PLOT OF VARIABLES USING SEABORN (Optional Plot)")
-plt.show()
+    plt.subplots_adjust(top=0.95,wspace=0.4) # made adjustments so that the title would fit on the top of the page and set the distance between subplots 
+plt.savefig("BOX PLOT OF VARIABLES USING SEABORN (Optional Plot)")
+#plt.show()
 
 # Violin Plots using SNS
 # Used same code as Box plots above
@@ -113,5 +114,5 @@ for i,n in zip(list(range(1,5)),l_petalandsepals):
     sns.violinplot(x=i_sp,y=n,data=iris_data)
     plt.suptitle("VIOLIN PLOT OF VARIABLES")
     plt.subplots_adjust(top=0.90,wspace=0.5)
-#plt.savefig("VIOLIN PLOT OF VARIABLES USING SEABORN (Optional Plot)")
-plt.show()
+plt.savefig("VIOLIN PLOT OF VARIABLES USING SEABORN (Optional Plot)")
+#plt.show()

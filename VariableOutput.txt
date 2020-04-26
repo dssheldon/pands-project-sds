@@ -1,0 +1,97 @@
+
+ =======================
+ | SUMMARY OF VARIABLES |
+ =======================
+
+
+
+The variables within the dataset are as follows:
+------------------------------------------------
+Sepal_Length
+Sepal_Width
+Petal_Length
+Petal_Width
+Species
+ - Iris-virginica
+ - Iris-versicolor
+ - Iris-setosa
+
+
+The number of records for each class of the Iris flowers is as follows:
+-----------------------------------------------------------------------
+	 Iris-virginica    50
+	 Iris-setosa    50
+	 Iris-versicolor    50
+
+
+Useful information about the data is as follow:
+-----------------------------------------------
+
+The mean of the Sepal_Length for the Iris-virginica is: ----> 6.59
+The median of the Sepal_Length for the Iris-virginica is: ----> 6.5
+The standard deviation of the Sepal_Length for the Iris-virginica is: ---> 0.64
+
+The mean of the Sepal_Length for the Iris-versicolor is: ----> 5.94
+The median of the Sepal_Length for the Iris-versicolor is: ----> 5.9
+The standard deviation of the Sepal_Length for the Iris-versicolor is: ---> 0.52
+
+The mean of the Sepal_Length for the Iris-setosa is: ----> 5.01
+The median of the Sepal_Length for the Iris-setosa is: ----> 5.0
+The standard deviation of the Sepal_Length for the Iris-setosa is: ---> 0.35
+
+The mean of the Sepal_Width for the Iris-virginica is: ----> 2.97
+The median of the Sepal_Width for the Iris-virginica is: ----> 3.0
+The standard deviation of the Sepal_Width for the Iris-virginica is: ---> 0.32
+
+The mean of the Sepal_Width for the Iris-versicolor is: ----> 2.77
+The median of the Sepal_Width for the Iris-versicolor is: ----> 2.8
+The standard deviation of the Sepal_Width for the Iris-versicolor is: ---> 0.31
+
+The mean of the Sepal_Width for the Iris-setosa is: ----> 3.42
+The median of the Sepal_Width for the Iris-setosa is: ----> 3.4
+The standard deviation of the Sepal_Width for the Iris-setosa is: ---> 0.38
+
+The mean of the Petal_Length for the Iris-virginica is: ----> 5.55
+The median of the Petal_Length for the Iris-virginica is: ----> 5.55
+The standard deviation of the Petal_Length for the Iris-virginica is: ---> 0.55
+
+The mean of the Petal_Length for the Iris-versicolor is: ----> 4.26
+The median of the Petal_Length for the Iris-versicolor is: ----> 4.35
+The standard deviation of the Petal_Length for the Iris-versicolor is: ---> 0.47
+
+The mean of the Petal_Length for the Iris-setosa is: ----> 1.46
+The median of the Petal_Length for the Iris-setosa is: ----> 1.5
+The standard deviation of the Petal_Length for the Iris-setosa is: ---> 0.17
+
+The mean of the Petal_Width for the Iris-virginica is: ----> 2.03
+The median of the Petal_Width for the Iris-virginica is: ----> 2.0
+The standard deviation of the Petal_Width for the Iris-virginica is: ---> 0.27
+
+The mean of the Petal_Width for the Iris-versicolor is: ----> 1.33
+The median of the Petal_Width for the Iris-versicolor is: ----> 1.3
+The standard deviation of the Petal_Width for the Iris-versicolor is: ---> 0.2
+
+The mean of the Petal_Width for the Iris-setosa is: ----> 0.24
+The median of the Petal_Width for the Iris-setosa is: ----> 0.2
+The standard deviation of the Petal_Width for the Iris-setosa is: ---> 0.11
+
+
+Shape of the Dataset
+--------------------
+The shape (r,c - number of rows and columns) of the iris.csv file is (150, 5)
+
+
+Summary of Data - Pandas Describe function
+------------------------------------------
+
+The following summary is generated using the describe function of pandas:
+
+       Sepal_Length  Sepal_Width  Petal_Length  Petal_Width
+count        150.00       150.00        150.00       150.00
+mean           5.84         3.05          3.76         1.20
+std            0.83         0.43          1.76         0.76
+min            4.30         2.00          1.00         0.10
+25%            5.10         2.80          1.60         0.30
+50%            5.80         3.00          4.35         1.30
+75%            6.40         3.30          5.10         1.80
+max            7.90         4.40          6.90         2.50
