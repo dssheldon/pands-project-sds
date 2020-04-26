@@ -8,9 +8,12 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
+#======================================================================================================================================
+
 # Answer 3.1 - Output a summary of each variable to a single text file
 
 # open the Iris csv file and added header rows 
+
 # researched how to add headers https://stackoverflow.com/questions/34091877/how-to-add-header-row-to-a-pandas-dataframe
  
 iris_data = pd.read_csv('iris.csv', names = ["Sepal_Length","Sepal_Width","Petal_Length","Petal_Width","Species"])
@@ -68,7 +71,7 @@ print('\n')
 print("Useful information about the data is as follow:")
 print()
 
-# Used for loopsto iterate  through the lists of variables of "petals and sepals" measurements and "Species" 
+# Used for loops to iterate  through the lists of variables of "petals and sepals" measurements and "Species" 
 #    Used the .loc method in Pandas to obtain the specifc data for each class
 #       The end result is to generate the mean, median and std for each variable broken down by class of iris flower
 #           using the  mean/median/std methods
@@ -89,3 +92,6 @@ print('\n')
 print("The following summary is generated using the describe function of pandas:")
 print()
 print(iris_data.describe()) # using pandas to output a summary of the data
+
+#========================================================================================================================================
+

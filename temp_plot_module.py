@@ -35,14 +35,8 @@ import random # imported to randomise the colours for plots
 
 plot_colors = list(mcolors.TABLEAU_COLORS) # generated a list of colours from which random colours will be selected for plots
 
-#MOVE THIS SECTION TO README###################################333333333
-# Researched  https://realpython.com/python-matplotlib-guide/
-# Used https://matplotlib.org/3.1.1/gallery/statistics/hist.html as well
-# Idea of technique of plotting by species from https://www.datacamp.com/community/tutorials/histograms-matplotlib but generated own code
-# Idea of box plot from https://medium.com/@harimittapalli/exploratory-data-analysis-iris-dataset-9920ea439a3e but code is my own
-###############################################################
 
-# Qs. 3.2 - Saving a histogram of the variables
+# Qs. 3.2 - Saving a HISTOGRAM of the variables
 
 # Used the for loop as above (for the text file) to generate the data for the histograms
 # Plotted the histograms for each variable by Species type
@@ -59,7 +53,8 @@ for petalandsepal in l_petalandsepals:
         #plt.savefig(specie.title()+" "+petalandsepal.title()+ "- Histogram")
         plt.show() #used temporarily and will be replace by savefig above.
 
-# Q3.3 - Saves a scatter plot of pairs of variables
+# Qs. 3.3 - Saving SCATTER PLOTS of pairs of variables
+
 # Created a list of combinations of each pair of variables using itertools and used a for loop and loc method to generate the required data
 # Added labels to each plot
 
@@ -75,7 +70,7 @@ for x in iris_data_combos:
     plt.xlabel(x[0].title())
     plt.ylabel(x[1].title())
     plt.title("SCATTER PLOT OF THE PAIRS OF IRIS VARIBLES")
-    plt.legend(l_species, loc='upper left', prop={'size': 10})
+    plt.legend(l_species, loc='upper left', prop={'size': 11})
     plt.tight_layout()
     #plt.savefig(specie.title()+" "+x[0].title()+"/"+x[1].title()+ "- Scatter Plot")
     plt.show()
@@ -84,7 +79,7 @@ for x in iris_data_combos:
 
 # Heatmap using SNS
 plt.figure(figsize=(8,8))
-sns.heatmap(iris_data.corr(),annot=True, cmap="PiYG")
+sns.heatmap(iris_data.corr(),annot=True, cmap="coolwarm")
 plt.title("CORRELATION BETWEEN IRIS VARIABLES - HEATMAP")
 plt.ylim(4.0, 0)
 plt.tight_layout()
