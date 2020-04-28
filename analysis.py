@@ -2,23 +2,32 @@
 # Programming and Scripting - Project 2020
 # This is the code relating to the project. It supplements and is supplemented by the Readme.md file
 
-# importing in the modules which will be needed for this program
+
+#======================================================================================================================================
+
+#Importing in the modules which will be needed for this program
+
+#======================================================================================================================================
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+import itertools as it # researched itertools as a way to generate comboinations for two sets of variables to use them in a loop in order to automate generating the scatter diagrams (below)
+import matplotlib.colors as mcolors # imported to generate colours for plots
+import random # imported to randomise the colours for plots
 
 #======================================================================================================================================
 
-# Answer 3.1 - Output a summary of each variable to a single text file
+# GENERAL SECTION OF CODE (FOR BOTH MODULES)
+
+#======================================================================================================================================
 
 # open the Iris csv file and added header rows 
 
-# researched how to add headers https://stackoverflow.com/questions/34091877/how-to-add-header-row-to-a-pandas-dataframe
- 
 iris_data = pd.read_csv('iris.csv', names = ["Sepal_Length","Sepal_Width","Petal_Length","Petal_Width","Species"])
 
-#create variables for later use to generate useful attributes about the data
+#create variables for later use to generate useful attributes about the data and writing efficent code
 i_sl = "Sepal_Length"
 i_sw = "Sepal_Width"
 i_pl = "Petal_Length"
@@ -31,13 +40,21 @@ i_vc = "Iris-versicolor"
 l_petalandsepals = [i_sl, i_sw, i_pl,i_pw] #generate a list of variables to use for various analysis and operations
 l_species = [i_vir, i_vc, i_seto] # generated a list of classes
 
-# Create a text file by using the open function with a+ attribute
+plot_colors = list(mcolors.TABLEAU_COLORS) # generated a list of colours from which random colours will be selected for plots
+
+
+#=========================================================================================================================================
+
+# WRITING SUMMARY OF VARIABLE TO A TEXT FILE - MODULE
+
+#=========================================================================================================================================
+
+
+# Answer 3.1 - Output a summary of each variable to a single text file
+
+# Create a text file by using the open function with 'w' attribute
 
 with open("VariableOutput.txt","w") as txt_file:
-
-    # print summary of each variable to a single text file - initally printing to screen
-    # use myfile.write("appended text") to replace the print function
-    # used the pandas tutorial on Real Python for some of the code used below to summarise attributes of the variables
 
     # APPEND A SUMMARY OF VARIABLES TO THE FILE
     txt_file.write("\n =======================")
@@ -105,3 +122,88 @@ with open("VariableOutput.txt","w") as txt_file:
 
 #========================================================================================================================================
 
+# PLOTTING MODULE
+
+#========================================================================================================================================
+
+
+# Qs. 3.2 - Saving a HISTOGRAM of the variables
+
+# Used the for loop as above (for the text file) to generate the data for the histograms
+# Plotted the histograms for each variable by Species type
+# Generated a random colour within the matplotlib.colors TABLEAU colour list
+# Set the title, labels and set the gridlines for the plot
+fig, ax = plt.subplots()
+for petalandsepal in l_petalandsepals: 
+    for specie in l_species:
+        ax.hist((iris_data.loc[iris_data[i_sp] == specie,petalandsepal]), bins='auto', rwidth=0.95, color=random.choice(plot_colors))
+        ax.set_title(specie.upper()+" "+ petalandsepal.upper())
+        ax.set_xlabel("Size of "+petalandsepal.title())
+        ax.set_ylabel(petalandsepal.title() + " Count")
+        ax.grid(axis='y', alpha=0.25)
+        fig.tight_layout()
+        fig.savefig(specie.title()+" "+petalandsepal.title()+ "- Histogram")
+        ax.cla() # clear the axes for next plot
+
+
+# Qs. 3.3 - Saving SCATTER PLOTS of pairs of variables
+
+# Created a list of combinations of each pair of variables using itertools and used a for loop and loc method to generate the required data
+# Added labels to each plot
+
+iris_data_combos = list(it.combinations(l_petalandsepals,2)) # used itertools to generate combinations of variables as a list with embeded tuples
+# used a for loop to go through each item of the list representing a unique combination (non repeated) of variables to use in the scatter plot
+
+fig1, ax1 = plt.subplots(figsize=(8,8)) #used the stateless approach of matplotlib and added a figure size
+for x in iris_data_combos:
+    # used the loc method again to extract data relating to each specie of iris flower seperately, giving it a seperate colour
+    # plotted scatter plots for each class/specie assigning a different colour to each specie
+    ax1.scatter((iris_data.loc[iris_data[i_sp] == i_vir,x[0]]), (iris_data.loc[iris_data[i_sp] == i_vir, x[1]]),color='red')
+    ax1.scatter((iris_data.loc[iris_data[i_sp] == i_vc,x[0]]), (iris_data.loc[iris_data[i_sp] == i_vc, x[1]]),color='blue')
+    ax1.scatter((iris_data.loc[iris_data[i_sp] == i_seto,x[0]]), (iris_data.loc[iris_data[i_sp] == i_seto, x[1]]),color='green')
+    ax1.set_xlabel(x[0].title())
+    ax1.set_ylabel(x[1].title())
+    ax1.set_title("SCATTER PLOT OF THE PAIRS OF IRIS VARIBLES")
+    ax1.legend(l_species, loc='upper left', prop={'size': 12})
+    fig1.tight_layout()
+    fig1.savefig(specie.title()+" "+x[0].title()+" vs "+x[1].title()+ "- Scatter Plot")
+    ax1.cla()
+
+# PLOT OTHER INTERESTING ANALYSIS (Includes heatmap showing correlations, pariplots, box plots and violin plots)
+# Used Seaborn to complete these plots   
+
+# Heatmap using SNS
+plt.figure(figsize=(8,8))
+sns.heatmap(iris_data.corr(),annot=True, cmap="coolwarm")
+plt.title("CORRELATION BETWEEN IRIS VARIABLES - HEATMAP")
+plt.ylim(4.0, 0) # used to correct the top of the heatmap boxes being cut-off
+plt.tight_layout()
+plt.savefig("CORRELATION BETWEEN IRIS VARIABLES (HEATMAP) -  SEABORN (Optional Plot)")
+
+
+# Pairplot using SNS
+sns.pairplot(iris_data, hue=i_sp)
+plt.suptitle("PAIRPLOTS OF ALL PAIRS OF VARIABLES USING SEABORN")
+plt.subplots_adjust(top=0.95)
+plt.savefig("PAIRPLOTS OF ALL PAIRS OF VARIABLES - SEABORN (Optional Plot)")
+
+
+# Box plots using SNS
+# Used a for loop to create subplots and then added boxplots for Each variable by Species.
+plt.figure(figsize=(10,8))
+for i,n in zip(list(range(1,5)),l_petalandsepals): #used "zip" and range to iterate through two variables simultaneously
+    plt.subplot(2,2,i) # used 'i' to choose a subplot
+    sns.boxplot(x=i_sp,y=n,data=iris_data) # used 'n' to iterate through the list of variables
+    plt.suptitle("BOX PLOT OF VARIABLES")  # added a super title for the figure
+    plt.subplots_adjust(top=0.95,wspace=0.4) # made adjustments so that the title would fit on the top of the page and set the distance between subplots 
+plt.savefig("BOX PLOT OF VARIABLES USING SEABORN (Optional Plot)")
+
+# Violin Plots using SNS
+# Used same code as Box plots above
+plt.figure(figsize=(10,8))
+for i,n in zip(list(range(1,5)),l_petalandsepals):
+    plt.subplot(2,2,i)
+    sns.violinplot(x=i_sp,y=n,data=iris_data)
+    plt.suptitle("VIOLIN PLOT OF VARIABLES")
+    plt.subplots_adjust(top=0.90,wspace=0.5)
+plt.savefig("VIOLIN PLOT OF VARIABLES USING SEABORN (Optional Plot)")

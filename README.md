@@ -121,7 +121,9 @@ The names of the variables were the title of each of the column (header) names. 
 
 Used the loc method to return the value data for each species and the value_counts method to generate a count for each species. The count function returned “Name and dtype (data type)” as well and so used the virg.to_string() function to remove this extra data (Reference: https://www.geeksforgeeks.org/python-pandas-dataframe-to_string/)
 
-#### *Others useful information about the dataset – mean, median and standard deviation*
+#### *Others useful information about the dataset*
+
+##### *Mean, median and standard deviation*
 
 The objective of this is to output the mean, median and standard deviation of each of the variable broken down by its respective species.
 
@@ -193,7 +195,7 @@ The pairplot function within seaborn, plots a pairplot for all pairs of variable
 
 I used the subplot_adjust method to adjust the top of the plot, as initially, the title of the plot was not appearing where it should and therefore did not apply the tight_layout() method to this plot.
 
-I set the title for the plot and used savefig to save the plot as a png file.
+I added  "super title" for the entire figure using the suptitle() menthod. I used savefig to save the plot as a png file.
 
 ##### Box Plots and Violin Plots
 
