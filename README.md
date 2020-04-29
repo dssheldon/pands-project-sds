@@ -2,7 +2,7 @@
 
 ## Project Plan
 
-- Download the Iris.csv file from the UC Irvine Machine Learning Repository: Iris data set. http://archive.ics.uci.edu/ml/datasets/Iris as instructed in the project instructions.
+- Download the Iris.csv file from the UC Irvine Machine Learning Repository: Iris data set. http://archive.ics.uci.edu/ml/datasets/Iris as instructed in the project instructions
 - Research plotting via matplotlib and seaborn to supplement knowledge in lecture
 - Research the Iris data set and analysis completed by others
 - Research making a Markdown Readme file (https://commonmark.org/help/tutorial/)
@@ -20,6 +20,25 @@
   - Stackoverflow.com
   - Geeksforgeeks.org
   - Medium.com
+
+## File List
+
+This repository contains the following core files:
+
+- Analysis.py - main python program
+- iris.csv - Iris dataset
+- Readme.md - This file
+- License - Standard MIT license
+- gitignore - created for python
+
+Other files created as outputs from the program:
+
+- VariableOutput.txt - Text file created by the program
+- PNG files - outputs of plots saved as images
+
+## Running the program
+
+The program is run by running the analysis.py file. The file is a python program and uses the python libraries mentioned in the 'General' section below.
 
 ## Analysis of the Iris Dataset
 
@@ -47,15 +66,15 @@ As mentioned above the Iris dataset is one of the most popular datasets currentl
 
 #### *Scatter plots*
 
-These are used to plot data points on a horizontal and a vertical axis in order to show how much one variable is affected by another. The relationship between the variables is called their correlation. Correlation between variables gives us the ability to predict the value of one variable when the value of a highly correlated variable is known. Various analyses have shown that a scatter plots between almost all variables of the Iris flower, users are able to separate the Iris-Setosa from the other two species
+These are used to plot data points on a horizontal and a vertical axis in order to show how much one variable is affected by another. The relationship between the variables is called their correlation. Correlation between variables gives us the ability to predict the value of one variable when the value of a highly correlated variable is known. Various analyses have shown that a scatter plots between almost all variables of the Iris flower, users are able to separate the Iris-Setosa from the other two species.
 
 #### *Histogram*
 
 A histogram plots the frequency of a certain numerical attribute of the data. It is used to determine the distribution of a dataset.
 
-Some interesting observations from using histograms on the Iris data by others is as follow:
+Some interesting observations from using histograms on the Iris data by others are as follow:
 
-- The overall distribution, petal length and petal width does not have a normal distribution, whereas sepal length and sepal width are uniformly distributed.
+- The overall distribution, petal length and petal width does not have a normal distribution, whereas sepal length and sepal width are uniformly distributed
 - The distribution of Iris-Setosa petal is completely different from the other 2 species
 - Using sepal length and sepal width, we can’t separate one species from another as the distribution is overlapping
 - Iris-Setosa is not normally distributed by sepal length and petal width
@@ -73,7 +92,7 @@ Box plot analysis on the Iris dataset show that the Sepal Length for Virginica a
 
 #### *Violin Plots*
 
-Violin plots are similar to Box Plot but with a rotated plot on each side, giving more information about the density estimate on the y-axis. The density is mirrored and flipped over and the resulting shape is filled in, creating an image resembling a violin. The advantage of a violin plot is that it can show nuances in the distribution that aren’t perceptible in a boxplot. On the other hand, the boxplot more clearly shows the outliers in the data
+Violin plots are similar to Box Plot but with a rotated plot on each side, giving more information about the density estimate on the y-axis. The density is mirrored and flipped over and the resulting shape is filled in, creating an image resembling a violin. The advantage of a violin plot is that it can show nuances in the distribution that aren’t perceptible in a boxplot. On the other hand, the boxplot more clearly shows the outliers in the data.
 
 ## Downloading the Dataset
 
@@ -119,7 +138,7 @@ The names of the variables were the title of each of the column (header) names. 
 
 #### *Number of records for each class*
 
-Used the loc method to return the value data for each species and the value_counts method to generate a count for each species. The count function returned “Name and dtype (data type)” as well and so used the virg.to_string() function to remove this extra data (Reference: https://www.geeksforgeeks.org/python-pandas-dataframe-to_string/)
+Used the loc method to return the value data for each species and the value_counts method to generate a count for each species. The count function returned “Name and dtype (data type)” as well and so used the virg.to_string() function to remove this extra data. (Reference: https://www.geeksforgeeks.org/python-pandas-dataframe-to_string/)
 
 #### *Others useful information about the dataset*
 
