@@ -37,15 +37,17 @@ i_vir = "Iris-virginica"
 i_seto = "Iris-setosa"
 i_vc = "Iris-versicolor"
 
+
+# Generate Lists for use later in the program
 l_petalandsepals = [i_sl, i_sw, i_pl,i_pw] #generate a list of variables to use for various analysis and operations
-l_species = [i_vir, i_vc, i_seto] # generated a list of classes
+l_species = [i_vir, i_vc, i_seto] # generated a list of iris species/classes
 
 plot_colors = list(mcolors.TABLEAU_COLORS) # generated a list of colours from which random colours will be selected for plots
 
 
 #=========================================================================================================================================
 
-# WRITING SUMMARY OF VARIABLE TO A TEXT FILE - MODULE
+# WRITING SUMMARY OF VARIABLES TO A TEXT FILE - MODULE
 
 #=========================================================================================================================================
 
