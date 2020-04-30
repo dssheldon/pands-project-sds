@@ -20,6 +20,7 @@
   - Stackoverflow.com
   - Geeksforgeeks.org
   - Medium.com
+  - Cheatsheets for Matplotlib, Seaborn and Pandas etc.
 
 ## File List
 
@@ -39,6 +40,21 @@ Other files created as outputs from the program:
 ## Running the program
 
 The program is run by running the analysis.py file. The file is a python program and uses the python libraries mentioned in the 'General' section below.
+
+## Key Learning Points during the project
+
+- Research of the analysis taken by others of the dataset and their thought process was very insightful
+- Deciding on the analysis that I would undertake as part of my project
+- Learning to use the pandas library particularly the use of .loc method. This took a considerable amount of time but was pivotal to the project as it helped 'locate' the data I needed for the analysis to be segregated by class/species
+- Adding the headers and summarizing the variables within the dataset
+- Initially used the 'print' function to check the text file output, changing this to the write function required modification to the output which I hadn't anticipated and took a little time to figure out. In the end this was easily solved by 'f stings'
+- Use of nested 'for' loops to iterate through the variables list and class list. This coupled with the .loc method (above) was very useful in manipulating the dataset into forms that I required for my analysis
+- Use of itertools to create combinations of variables
+- Use of the random library and the matplotlib.colors library to randomise colours for the histogram plots.
+- Use of the Stateful and Stateless approach as part of matplotlib. I read the required reading on this a few times. Even so, I initially used the Stateful approach initially for the plots done by pyplot, but changed the code to be Stateless at a later stage. Given the simplicity of the plots being used for this projects, I do not think this made a large difference on the code itself and the output
+- Adjusting the formatting of certain plots required research mainly where the tight_layout() function did not yield results as expected (e.g. adding super titles instead of titles)
+
+
 
 ## Analysis of the Iris Dataset
 
@@ -122,9 +138,7 @@ Imported the following libraries to use during the course of the program:
 
 #### *Using the .loc method*
 
-Used the loc method within Pandas to access a group of rows and columns. The main purpose of this was to access the column data of the variables segregated by Species. I used this throughout the program for both writing to the text file and for the plots.
-
- 
+Used the loc method within Pandas to access a group of rows and columns. The main purpose of this was to access the column data of the variables segregated by Species. I used this throughout the program for both writing to the text file and for the plots. 
 
 ### <u>Writing a Summary of variables to a text file</u>
 

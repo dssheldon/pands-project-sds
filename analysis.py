@@ -12,7 +12,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import numpy as np
+import numpy as np #added to support pandas (too afraid to remove now as everthing works)
 import itertools as it # researched itertools as a way to generate comboinations for two sets of variables to use them in a loop in order to automate generating the scatter diagrams (below)
 import matplotlib.colors as mcolors # imported to generate colours for plots
 import random # imported to randomise the colours for plots
