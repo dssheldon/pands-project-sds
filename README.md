@@ -1,5 +1,9 @@
 # Programming and Scripting - Project 2020
 
+###### <u>Owner: Sheldon D'Souza (G00387857)</u>
+
+
+
 ## Project Plan
 
 - Download the Iris.csv file from the UC Irvine Machine Learning Repository: Iris data set. http://archive.ics.uci.edu/ml/datasets/Iris as instructed in the project instructions
@@ -9,18 +13,20 @@
 - Research the use of pandas in order to extract the data as required
 - Research and write the code which extracts the information about the variables to a text file
 - Research and write the code for the plots
-- Create separate modules for the text output and the plots and merged them once they work
+- Create separate modules for the text output and the plots and merge them once they work
 - Sources used for this project included:
   - Lecture videos and notes
   - Real Python's Python Plotting With Matplotlib (Guide) <https://realpython.com/python-matplotlib-guide/>
   - Matplotlib.org
   - Datacamp.com
-  - Youtube videos – Corey Schafer and others
+  - You Tube videos – Corey Schafer and others
   - Books – Python Crash course (Eric Matthews), A Whirlwind tour of python etc.
   - Stackoverflow.com
   - Geeksforgeeks.org
   - Medium.com
   - Cheatsheets for Matplotlib, Seaborn and Pandas etc.
+
+
 
 ## File List
 
@@ -37,9 +43,13 @@ Other files created as outputs from the program:
 - VariableOutput.txt - Text file created by the program
 - PNG files - outputs of plots saved as images
 
+
+
 ## Running the program
 
-The program is run by running the analysis.py file. The file is a python program and uses the python libraries mentioned in the 'General' section below.
+The program is executed by running the analysis.py file. The file is a python program and uses the python libraries mentioned in the 'General' section below.
+
+
 
 ## Key Learning Points during the project
 
@@ -51,7 +61,7 @@ The program is run by running the analysis.py file. The file is a python program
 - Use of nested 'for' loops to iterate through the variables list and class list. This coupled with the .loc method (above) was very useful in manipulating the dataset into forms that I required for my analysis
 - Use of itertools to create combinations of variables
 - Use of the random library and the matplotlib.colors library to randomise colours for the histogram plots.
-- Use of the Stateful and Stateless approach as part of matplotlib. I read the required reading on this a few times. Even so, I initially used the Stateful approach initially for the plots done by pyplot, but changed the code to be Stateless at a later stage. Given the simplicity of the plots being used for this projects, I do not think this made a large difference on the code itself and the output
+- Use of the Stateful and Stateless approach as part of matplotlib. I read the required reading on this a few times. Even so, I initially used the Stateful approach for the plots done by pyplot, but changed the code to be Stateless at a later stage. Given the simplicity of the plots being used for this project, I do not think this made a large difference on the code itself and the output
 - Adjusting the formatting of certain plots required research mainly where the tight_layout() function did not yield results as expected (e.g. adding super titles instead of titles)
 
 
@@ -72,7 +82,7 @@ It is a standard an inbuilt dataset in many languages such as Python (scikit-lea
 
 ### Use of the Dataset
 
-The dataset has been used extensively in the field of machine learning and data analytics. The symmetry of the dataset compounded with the inherent complexity makes it ideal as a starting point for students looking to undertake analysis of the dataset as well as development of code to explore this dataset. The main challenge undertaken by students undertaking machine learning is building a model to classify the flower into the correct species based on the four data attributes and the relationships between them. The main way to do this is to create a decision tree that will sort the flower into its species. However, a major part of doing this is analysing the data visually using various plots. A concise and well thought though exploration of the data is therefore the first step to achieve many data science related objectives.
+The dataset has been used extensively in the field of machine learning and data analytics. The symmetry of the dataset compounded with the inherent complexity makes it ideal as a starting point for students looking to undertake analysis of the dataset as well as development of code to explore this dataset. The main challenge for students undertaking machine learning is building a model to classify the flower into the correct species based on the four data attributes and the relationships between them. The main way to do this is to create a decision tree that will sort the flower into its species. However, a major part of doing this is analysing the data visually using various plots. A concise and well thought exploration of the data is therefore the first step to achieve many data science related objectives.
 
 ### Analysis that others have undertaken using the dataset
 
@@ -110,6 +120,8 @@ Box plot analysis on the Iris dataset show that the Sepal Length for Virginica a
 
 Violin plots are similar to Box Plot but with a rotated plot on each side, giving more information about the density estimate on the y-axis. The density is mirrored and flipped over and the resulting shape is filled in, creating an image resembling a violin. The advantage of a violin plot is that it can show nuances in the distribution that aren’t perceptible in a boxplot. On the other hand, the boxplot more clearly shows the outliers in the data.
 
+
+
 ## Downloading the Dataset
 
 Downloaded the dataset from: https://archive.ics.uci.edu/ml/datasets/iris
@@ -139,6 +151,8 @@ Imported the following libraries to use during the course of the program:
 #### *Using the .loc method*
 
 Used the loc method within Pandas to access a group of rows and columns. The main purpose of this was to access the column data of the variables segregated by Species. I used this throughout the program for both writing to the text file and for the plots. 
+
+
 
 ### <u>Writing a Summary of variables to a text file</u>
 
@@ -182,7 +196,7 @@ Used nested for loops to iterate through the l_petalandsepals and l_species list
 
 Each histogram plot generated has a separate colour. I achieved this by importing matplotlib.colors library. I then created a list of the ‘Tableau Colors’ from the library and named the list plot_colors. I then used random.choice from the random library to choose a random color from the plot_colors for the historgram being plotted.
 
-The plot title is generated by using the instance returned by the for loops. The species name and the variable name from is generated from the l_specie and l_petalandsepals lists respectively. The x and y axis titles are also generated from these lists.
+The plot title is generated by using the instance returned by the for loops. The species name and the variable name is generated from the l_specie and l_petalandsepals lists respectively. The x and y axis titles are also generated from these lists.
 
 I added vertical grid lines to the plot and set the ‘alpha’ value to increase the transparency of the grid lines to an appropriate level for ease of viewing.
 
